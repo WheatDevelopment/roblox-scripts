@@ -1,5 +1,6 @@
 local RunService = game:GetService("RunService")
 local Camera = workspace.CurrentCamera
+local Players = game:GetService("Players")
 
 _G.ESPVisible = true
 _G.TextColor = Color3.fromRGB(255, 80, 10)
@@ -24,6 +25,8 @@ local function CreateESPForAnimals()
             RunService.RenderStepped:Connect(function()
                 if _G.ESPVisible and animal and animal:FindFirstChild("HumanoidRootPart") then
                     local Vector, OnScreen = Camera:WorldToViewportPoint(animal.HumanoidRootPart.Position)
+                    local playerRoot = Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                    local distance = playerRoot and (animal.HumanoidRootPart.Position - playerRoot.Position).Magnitude or 0
 
                     ESP.Size = _G.TextSize
                     ESP.Center = _G.Center
@@ -35,7 +38,7 @@ local function CreateESPForAnimals()
 
                     if OnScreen then
                         ESP.Position = Vector2.new(Vector.X, Vector.Y - 25)
-                        ESP.Text = animal.Name
+                        ESP.Text = string.format("%s (%.1f studs)", animal.Name, distance)
                         ESP.Visible = true
                     else
                         ESP.Visible = false
