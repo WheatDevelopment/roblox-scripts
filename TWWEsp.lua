@@ -11,7 +11,7 @@ _G.OutlineColor = Color3.fromRGB(0, 0, 0)
 _G.TextTransparency = 0.7
 _G.TextFont = Drawing.Fonts.UI
 _G.DisableKey = Enum.KeyCode.Z
-_G.DoOneEsp = false
+_G.DoOneEsp = true
 _G.MobName = "Deer"
 
 local UserInputService = game:GetService("UserInputService")
