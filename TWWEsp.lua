@@ -11,6 +11,8 @@ _G.OutlineColor = Color3.fromRGB(0, 0, 0)
 _G.TextTransparency = 0.7
 _G.TextFont = Drawing.Fonts.UI
 _G.DisableKey = Enum.KeyCode.Z
+_G.DoOneEsp = false
+_G.MobName = "Deer"
 
 local UserInputService = game:GetService("UserInputService")
 local Typing = false
@@ -19,6 +21,10 @@ local ESPObjects = {}
 local function CreateESPForAnimals()
     for _, animal in pairs(workspace.WORKSPACE_Entities.Animals:GetChildren()) do
         if animal:IsA("Model") and animal:FindFirstChild("HumanoidRootPart") then
+            if _G.DoOneEsp and animal.Name ~= _G.MobName then
+                continue
+            end
+            
             local ESP = Drawing.new("Text")
             ESPObjects[animal] = ESP
 
@@ -50,6 +56,11 @@ local function CreateESPForAnimals()
         end
     end
 end
+
+workspace.WORKSPACE_Entities.Animals.ChildAdded:Connect(function(child)
+    wait(0.1)
+    CreateESPForAnimals()
+end)
 
 UserInputService.TextBoxFocused:Connect(function()
     Typing = true
