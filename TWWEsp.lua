@@ -58,7 +58,7 @@ local function CreateESPForAnimals()
 end
 
 workspace.WORKSPACE_Entities.Animals.ChildAdded:Connect(function(child)
-    wait(0.1)
+    wait(3)
     CreateESPForAnimals()
 end)
 
