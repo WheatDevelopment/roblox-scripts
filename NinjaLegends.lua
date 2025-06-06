@@ -1,3 +1,3 @@
-getgenv().WheatEngineConfig = "SFlTfN5" -- Enter your Product ID
+getgenv().WheatConfig = "SFlTfN5"
 
-loadstring(game:HttpGet("https://engine.wheatdevelopment.de/files/key-systems/diamond.txt"))
+loadstring(game:HttpGet("https://engine.wheatdevelopment.de/files/key-systems/diamond.txt"))()
